@@ -600,11 +600,9 @@ html[dir='rtl'] .dropdownToolbarButton {
     position: absolute;
     top: 32px;
     right: 0;
-    bottom: 32px;
+    bottom: 1px;
     left: 0;
-
     text-align: center;
-
     background-color: #888;
     background-image: url(images/texture.png);
 }

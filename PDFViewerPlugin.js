@@ -256,7 +256,7 @@ function PDFViewerPlugin() {
     };
 
     this.isSlideshow = function () {
-        return isGuessedSlideshow;
+        return false;
     };
 
     this.onLoad = function () {};

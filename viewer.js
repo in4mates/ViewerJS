@@ -61,12 +61,12 @@ function Viewer(viewerPlugin, parameters) {
         canvasContainer = document.getElementById('canvasContainer'),
         overlayNavigator = document.getElementById('overlayNavigator'),
         titlebar = document.getElementById('titlebar'),
-        toolbar = document.getElementById('toolbarContainer'),
+        // toolbar = document.getElementById('toolbarContainer'),
         pageSwitcher = document.getElementById('toolbarLeft'),
-        zoomWidget = document.getElementById('toolbarMiddleContainer'),
+        // zoomWidget = document.getElementById('toolbarMiddleContainer'),
         scaleSelector = document.getElementById('scaleSelect'),
         dialogOverlay = document.getElementById('dialogOverlay'),
-        toolbarRight = document.getElementById('toolbarRight'),
+        // toolbarRight = document.getElementById('toolbarRight'),
         aboutDialog,
         pages = [],
         currentPage,
@@ -115,17 +115,18 @@ function Viewer(viewerPlugin, parameters) {
         aboutDialogCentererCell.appendChild(aboutDialog);
 
         // Create button to open dialog that says "ViewerJS"
-        aboutButton = document.createElement('button');
-        aboutButton.id = "about";
-        aboutButton.className = "toolbarButton textButton about";
-        aboutButton.title = "About";
-        aboutButton.innerHTML = "ViewerJS"
-        toolbarRight.appendChild(aboutButton);
+        // aboutButton = document.createElement('button');
+        // aboutButton.id = "about";
+        // aboutButton.className = "toolbarButton textButton about";
+        // aboutButton.title = "About";
+        // aboutButton.innerHTML = "ViewerJS"
+        // toolbarRight.appendChild(aboutButton);
 
         // Attach events to the above
-        aboutButton.addEventListener('click', function () {
-                showAboutDialog();
-        });
+        // aboutButton.addEventListener('click', function () {
+        //         showAboutDialog();
+        // });
+
         document.getElementById('aboutDialogCloseButton').addEventListener('click', function () {
                 hideAboutDialog();
         });
@@ -217,7 +218,8 @@ function Viewer(viewerPlugin, parameters) {
         }
 
         maxWidth = canvasContainer.clientWidth - kScrollbarPadding;
-        maxHeight = canvasContainer.clientHeight - kScrollbarPadding;
+        // maxHeight = canvasContainer.clientHeight - kScrollbarPadding;
+        maxHeight = canvasContainer.clientHeight;
 
         switch (value) {
         case 'page-actual':
@@ -235,6 +237,7 @@ function Viewer(viewerPlugin, parameters) {
         case 'auto':
             if (viewerPlugin.isSlideshow()) {
                 viewerPlugin.fitToPage(maxWidth + kScrollbarPadding, maxHeight + kScrollbarPadding);
+                viewerPlugin.fitToPage(maxWidth + kScrollbarPadding, maxHeight);
             } else {
                 viewerPlugin.fitSmart(maxWidth);
             }
@@ -272,9 +275,9 @@ function Viewer(viewerPlugin, parameters) {
 
         url = parameters.documentUrl;
         document.title = parameters.title;
-        var documentName = document.getElementById('documentName');
-        documentName.innerHTML = "";
-        documentName.appendChild(documentName.ownerDocument.createTextNode(parameters.title));
+        // var documentName = document.getElementById('documentName');
+        // documentName.innerHTML = "";
+        // documentName.appendChild(documentName.ownerDocument.createTextNode(parameters.title));
 
         viewerPlugin.onLoad = function () {
             document.getElementById('pluginVersion').innerHTML = viewerPlugin.getPluginVersion();
@@ -286,7 +289,7 @@ function Viewer(viewerPlugin, parameters) {
                 pageSwitcher.style.visibility = 'visible';
             } else {
                 // For text documents, show the zoom widget.
-                zoomWidget.style.visibility = 'visible';
+                // zoomWidget.style.visibility = 'visible';
                 // Only show the page switcher widget if the plugin supports page numbers
                 if (viewerPlugin.getPageInView) {
                     pageSwitcher.style.visibility = 'visible';
@@ -295,7 +298,7 @@ function Viewer(viewerPlugin, parameters) {
 
             initialized = true;
             pages = getPages();
-            document.getElementById('numPages').innerHTML = 'of ' + pages.length;
+            document.getElementById('numPages').innerHTML = '/ ' + pages.length;
 
             self.showPage(readStartPageParameter(parameters.startpage));
 
@@ -396,7 +399,7 @@ function Viewer(viewerPlugin, parameters) {
         var overlayCloseButton = document.getElementById('overlayCloseButton');
 
         if (!presentationMode) {
-            titlebar.style.display = toolbar.style.display = 'none';
+            // titlebar.style.display = toolbar.style.display = 'none';
             overlayCloseButton.style.display = 'block';
             canvasContainer.classList.add('presentationMode');
             canvasContainer.onmousedown = function (event) {
@@ -418,7 +421,7 @@ function Viewer(viewerPlugin, parameters) {
             if (isBlankedOut()) {
                 leaveBlankOut();
             }
-            titlebar.style.display = toolbar.style.display = 'block';
+            // titlebar.style.display = toolbar.style.display = 'block';
             overlayCloseButton.style.display = 'none';
             canvasContainer.classList.remove('presentationMode');
             canvasContainer.onmouseup = function () {};
@@ -495,7 +498,7 @@ function Viewer(viewerPlugin, parameters) {
      */
     function showToolbars() {
         titlebar.classList.add('viewer-touched');
-        toolbar.classList.add('viewer-touched');
+        // toolbar.classList.add('viewer-touched');
         window.clearTimeout(toolbarTouchTimer);
         toolbarTouchTimer = window.setTimeout(function () {
             hideToolbars();
@@ -504,7 +507,7 @@ function Viewer(viewerPlugin, parameters) {
 
     function hideToolbars() {
         titlebar.classList.remove('viewer-touched');
-        toolbar.classList.remove('viewer-touched');
+        // toolbar.classList.remove('viewer-touched');
     }
 
     function toggleToolbars() {
@@ -542,26 +545,26 @@ function Viewer(viewerPlugin, parameters) {
         if (viewerPlugin) {
             self.initialize();
 
-            if (!(document.exitFullscreen || document.cancelFullScreen || document.mozCancelFullScreen || document.webkitExitFullscreen || document.webkitCancelFullScreen || document.msExitFullscreen)) {
-                document.getElementById('fullscreen').style.visibility = 'hidden';
-                document.getElementById('presentation').style.visibility = 'hidden';
-            }
+            // if (!(document.exitFullscreen || document.cancelFullScreen || document.mozCancelFullScreen || document.webkitExitFullscreen || document.webkitCancelFullScreen || document.msExitFullscreen)) {
+            //     // document.getElementById('fullscreen').style.visibility = 'hidden';
+            //     // document.getElementById('presentation').style.visibility = 'hidden';
+            // }
 
-            setButtonClickHandler('overlayCloseButton', self.toggleFullScreen);
-            setButtonClickHandler('fullscreen', self.toggleFullScreen);
-            setButtonClickHandler('presentation', function () {
-                if (!isFullScreen) {
-                    self.toggleFullScreen();
-                }
-                self.togglePresentationMode();
-            });
+            // setButtonClickHandler('overlayCloseButton', self.toggleFullScreen);
+            // setButtonClickHandler('fullscreen', self.toggleFullScreen);
+            // setButtonClickHandler('presentation', function () {
+            //     if (!isFullScreen) {
+            //         self.toggleFullScreen();
+            //     }
+            //     self.togglePresentationMode();
+            // });
 
             document.addEventListener('fullscreenchange', handleFullScreenChange);
             document.addEventListener('webkitfullscreenchange', handleFullScreenChange);
             document.addEventListener('mozfullscreenchange', handleFullScreenChange);
             document.addEventListener('MSFullscreenChange', handleFullScreenChange);
 
-            setButtonClickHandler('download', self.download);
+            // setButtonClickHandler('download', self.download);
 
             setButtonClickHandler('zoomOut', self.zoomOut);
             setButtonClickHandler('zoomIn', self.zoomIn);
@@ -584,7 +587,7 @@ function Viewer(viewerPlugin, parameters) {
             overlayNavigator.addEventListener('click', showOverlayNavigator);
             canvasContainer.addEventListener('click', toggleToolbars);
             titlebar.addEventListener('click', showToolbars);
-            toolbar.addEventListener('click', showToolbars);
+            // toolbar.addEventListener('click', showToolbars);
 
             window.addEventListener('scalechange', function (evt) {
                 var customScaleOption = document.getElementById('customScaleOption'),
