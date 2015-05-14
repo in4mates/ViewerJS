@@ -71,7 +71,17 @@
             },
             path: "./PDFViewerPlugin",
             getClass: function() { return PDFViewerPlugin; }
-        }
+        },
+        {
+            supportsMimetype: function(mimetype) {
+                return (mimetype.indexOf('image/') === 0);
+            },
+            supportsFileExtension: function(extension) {
+                return (['jpg', 'jpeg', 'gif', 'png', 'tiff', 'ico'].indexOf(extension) >= 0);
+            },
+            path: "./IMGViewerPlugin",
+            getClass: function() { return IMGViewerPlugin; }
+        }        
     ];
 
 

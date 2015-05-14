@@ -121,7 +121,7 @@ select {
 }
 
 #toolbarMiddleContainer, #toolbarLeft {
-    visibility: hidden;
+    visibility: visible;
 }
 
 html[dir='ltr'] #toolbarLeft {
